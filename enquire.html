@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .enq-container
+        {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0px 0px 8px rgba(128, 128, 128, 0.7); 
+            width: fit-content; 
+            padding-bottom: 30px;
+            border-radius: 10px; 
+        }
+        .enq-container div h3
+        {
+            text-align: center;
+        }
+        .enq-container div input
+        {
+            margin-left: 35px;
+            margin-right: 35px;
+            border: 1px solid black;
+            width: 200px;
+            padding: 4px 6px 4px 6px;
+        }
+        .enq-row button
+        {
+            margin-top: 10px;
+            padding: 7px 30px 7px 30px;
+            background-color: black;
+            color: white;
+
+        }
+        .enq-row
+        {
+            border-bottom: 1px solid gray;
+            padding-bottom: 20px;
+        }
+    </style>
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
+</head>
+<body>
+    <form method="post" class="enq-container">
+        <div class="enq-row">
+            <h3>Cellphone Number</h3>
+            <input type="tel" placeholder="Enter your cellphone number..." id="cellphone">
+        </div>
+        <div class="enq-row">
+            <h3>Name and Surname</h3>
+            <input type="text" placeholder="Enter your name and surname..." id="nameandsurname">
+        </div>
+        <div>
+            <h3>Message</h3>
+            <textarea style="resize: none; width: 100%; height: 80px;" cols="30" rows="10" id="message" placeholder="Enter your message..."></textarea>
+        </div>
+        <div >
+            <input type="button" value="Send Email" onclick="sendEmail()">
+        </div>
+    </form>
+    <script type="text/javascript">
+        function sendEmail()
+        {
+            Email.send({
+                SecureToken : "C973D7AD-F097-4B95-91F4-40ABC5567812",
+                To : 'nursingvarsitycollege@gmail.com',
+                From : "hlabisasanele730@gmail.com",
+                Subject : `STUDENT QUERY (${document.getElementById('namesurname').value})`,
+                Body : `Cellphone number: ${document.getElementById('cellphone').value} \n ${document.getElementById('message').value}`
+            }).then(
+            message => alert(message)
+            );
+        }
+    </script>
+</body>
+</html>
